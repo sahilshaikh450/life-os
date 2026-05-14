@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://life-os-production-d46c.up.railway.app';
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const api = axios.create({
 
