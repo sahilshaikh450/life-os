@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL =
   process.env.REACT_APP_API_URL ||
-  'http://localhost:8080';
+  'https://life-os-production-d46c.up.railway.app';
 
 const api = axios.create({
 
