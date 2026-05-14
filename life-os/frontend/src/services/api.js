@@ -1,7 +1,6 @@
 import axios from 'axios';
-const BASE_URL =
-  process.env.REACT_APP_API_URL ||
-  'https://life-os-production-d46c.up.railway.app';
+
+const BASE_URL = 'https://life-os-production-d46c.up.railway.app';
 
 const api = axios.create({
 
