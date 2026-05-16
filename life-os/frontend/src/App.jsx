@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import { AnimatePresence } from 'framer-motion';
 import { useAuthStore } from './store/authStore';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -10,6 +11,7 @@ import ExpenseDashboard from './pages/ExpenseDashboard';
 import TodoDashboard from './pages/TodoDashboard';
 import SettingsPage from './pages/SettingsPage';
 import Layout from './components/layout/Layout';
+import SplashScreen from './pages/SplashScreen';
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuthStore();
@@ -22,27 +24,39 @@ const PublicRoute = ({ children }) => {
 };
 
 export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
   return (
-    <BrowserRouter>
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          style: { background: '#1a1a2e', color: '#e2e8f0', border: '1px solid #4a5568' },
-          success: { iconTheme: { primary: '#68d391', secondary: '#1a1a2e' } },
-          error: { iconTheme: { primary: '#fc8181', secondary: '#1a1a2e' } },
-        }}
-      />
-      <Routes>
-        <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
-        <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
-        <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
-          <Route index element={<LifeOSHome />} />
-          <Route path="habits" element={<HabitDashboard />} />
-          <Route path="expenses" element={<ExpenseDashboard />} />
-          <Route path="todos" element={<TodoDashboard />} />
-          <Route path="settings" element={<SettingsPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <>
+      <AnimatePresence>
+        {showSplash && (
+          <SplashScreen onComplete={() => setShowSplash(false)} />
+        )}
+      </AnimatePresence>
+
+      {!showSplash && (
+        <BrowserRouter>
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: { background: '#1a1a2e', color: '#e2e8f0', border: '1px solid #4a5568' },
+              success: { iconTheme: { primary: '#68d391', secondary: '#1a1a2e' } },
+              error: { iconTheme: { primary: '#fc8181', secondary: '#1a1a2e' } },
+            }}
+          />
+          <Routes>
+            <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
+            <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
+            <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
+              <Route index element={<LifeOSHome />} />
+              <Route path="habits" element={<HabitDashboard />} />
+              <Route path="expenses" element={<ExpenseDashboard />} />
+              <Route path="todos" element={<TodoDashboard />} />
+              <Route path="settings" element={<SettingsPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      )}
+    </>
   );
 }
