@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.sahil.lifeos',
-  appName: 'Life-OS',
+  appId: 'com.sahil.lifeforge',
+  appName: 'LifeForge          ndefined',
   webDir: 'build'
 };
 
