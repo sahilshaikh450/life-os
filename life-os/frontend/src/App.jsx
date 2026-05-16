@@ -8,6 +8,7 @@ import LifeOSHome from './pages/LifeOSHome';
 import HabitDashboard from './pages/HabitDashboard';
 import ExpenseDashboard from './pages/ExpenseDashboard';
 import TodoDashboard from './pages/TodoDashboard';
+import SettingsPage from './pages/SettingsPage';
 import Layout from './components/layout/Layout';
 
 const PrivateRoute = ({ children }) => {
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="habits" element={<HabitDashboard />} />
           <Route path="expenses" element={<ExpenseDashboard />} />
           <Route path="todos" element={<TodoDashboard />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
