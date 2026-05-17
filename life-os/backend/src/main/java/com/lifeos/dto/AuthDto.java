@@ -80,4 +80,19 @@ public class AuthDto {
     public static class RefreshRequest {
         private String refreshToken;
     }
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public static class OtpRequest {
+    private String email;
+}
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public static class VerifyOtpRequest {
+    private String email;
+    private String otp;
+}
+    
 }
